@@ -3,7 +3,11 @@ const router = express.Router();
 
 const { login, dashboard } = require('../controllers/main')
 
-router.route('/dashboard').get(dashboard)
+// use this autheentication middleware whenever you want to access the dashboard
+const authMiddleware = require('../middleware/auth')
+
+
+router.route('/dashboard').get(authMiddleware, dashboard)
 router.route('/login').post(login)
 
 
